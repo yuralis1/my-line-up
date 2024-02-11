@@ -1,24 +1,7 @@
 import { UserComponent } from "@/components/UserComponent";
-import { PrismaClient } from "@prisma/client";
-import { revalidatePath } from "next/cache";
+import { addUser, removeAllUsers } from "./action";
+import prisma from "@/lib/prisma";
 
-const prisma = new PrismaClient();
-
-async function addUser() {
-  "use server";
-  await prisma.user.create({
-    data: {
-      name: "Alice",
-    },
-  });
-  revalidatePath("/");
-}
-
-async function removeAllUsers() {
-  "use server";
-  await prisma.user.deleteMany();
-  revalidatePath("/");
-}
 export default async function Home() {
   const users = await prisma.user.findMany();
 
