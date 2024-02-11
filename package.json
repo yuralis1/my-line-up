@@ -9,7 +9,12 @@
     "lint": "next lint",
     "prisma": "dotenv -e .env.development.local prisma generate",
     "migrate": "dotenv -e .env.development.local prisma migrate dev",
-    "postinstall": "prisma generate && prisma migrate deploy"
+    "postinstall": "prisma generate && prisma migrate deploy",
+    "dev_local": "dotenv -e .env.dev.localdb.local -e .env.development.local next dev",
+    "build_local": "dotenv -e .env.dev.localdb.local -e .env.development.local next build",
+    "start_local": "dotenv -e .env.dev.localdb.local -e .env.development.local next start",
+    "prisma_local": "dotenv -e .env.dev.localdb.local -e .env.development.local prisma generate",
+    "migrate_local": "dotenv -e .env.dev.localdb.local -e .env.development.local prisma migrate dev"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
