@@ -1,8 +1,8 @@
 import "server-only";
-import { getServerSession } from "next-auth";
-import { options } from "@/lib/auth";
+import { auth } from "@/lib/auth";
+
 export async function getUser() {
-  const session = await getServerSession(options);
+  const session = await auth();
   if (!session) return null;
   return session.user;
 }

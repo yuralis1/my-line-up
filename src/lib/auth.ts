@@ -1,6 +1,11 @@
 import "server-only";
-import type { NextAuthOptions } from "next-auth";
+import { getServerSession, type NextAuthOptions } from "next-auth";
 import TwitchProvider from "next-auth/providers/twitch";
+import type {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from "next";
 
 export const options: NextAuthOptions = {
   providers: [
@@ -10,3 +15,12 @@ export const options: NextAuthOptions = {
     }),
   ],
 };
+
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, options);
+}
