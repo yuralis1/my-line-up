@@ -2,6 +2,7 @@
 namespace NodeJS {
   interface ProcessEnv {
     NEXTAUTH_SECRET: string;
+    NEXTAUTH_URL: string;
     TWITCH_CLIENT_ID: string;
     TWITCH_CLIENT_SECRET: string;
     POSTGRES_DATABASE: string;
