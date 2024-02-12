@@ -1,11 +1,7 @@
 import prisma from "@/lib/prisma";
 import { z } from "zod";
-import { initTRPC } from "@trpc/server";
+import { router, publicProcedure, privateProcedure } from "./setup";
 
-const t = initTRPC.create();
-
-const { createCallerFactory, router } = t;
-const publicProcedure = t.procedure;
 const appRouter = router({
   createUser: publicProcedure
     .input(z.object({ name: z.string() }))
@@ -16,11 +12,9 @@ const appRouter = router({
         },
       });
     }),
-  deleteAllUsers: publicProcedure.query(async () => {
+  deleteAllUsers: privateProcedure.query(async () => {
     await prisma.user.deleteMany();
   }),
 });
 
-export const createCaller = createCallerFactory(appRouter);
-export const caller = createCaller({});
-export type AppRouter = typeof appRouter;
+export default appRouter;
