@@ -1,26 +1,33 @@
 "use client";
 import { User } from "@prisma/client";
-
+import { actionAddUser, actionRemoveAllUsers } from "@/app/action";
+import { useAction } from "next-safe-action/hooks";
 type UserComponentProps = {
   users: User[];
-  addUser: () => void;
-  removeAllUsers: () => void;
   isLoggedIn: boolean;
 };
 
-export function UserComponent({
-  users,
-  addUser,
-  removeAllUsers,
-  isLoggedIn,
-}: UserComponentProps) {
+export function UserComponent({ users, isLoggedIn }: UserComponentProps) {
+  const addUser = useAction(actionAddUser);
+  const removeAllUsers = useAction(actionRemoveAllUsers);
   return (
     <div className="flex-col">
       <div className="flex justify-between w-80">
-        <button onClick={() => addUser()}>Add user</button>
-        <button disabled={!isLoggedIn} onClick={() => removeAllUsers()}>
-          Remove all users
-        </button>
+        {addUser.status === "executing" ? (
+          <div>Loading</div>
+        ) : (
+          <button onClick={() => addUser.execute()}>Add user</button>
+        )}
+        {removeAllUsers.status === "executing" ? (
+          <div>Loading</div>
+        ) : (
+          <button
+            disabled={!isLoggedIn}
+            onClick={() => removeAllUsers.execute()}
+          >
+            Remove all users
+          </button>
+        )}
       </div>
       {users.map((user) => (
         <div key={user.id} className="flex flex-col items-center">

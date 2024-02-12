@@ -22,6 +22,7 @@
     "@vercel/postgres": "^0.5.1",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
+    "next-safe-action": "^6.1.0",
     "prisma": "^5.7.1",
     "react": "^18",
     "react-dom": "^18",
