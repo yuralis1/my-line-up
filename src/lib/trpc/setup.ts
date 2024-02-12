@@ -1,8 +1,10 @@
+import "server-only";
 import { TRPCError, initTRPC } from "@trpc/server";
 import { getUser } from "@/data/user";
 
 const t = initTRPC.create({
   isServer: true,
+  allowOutsideOfServer: false,
 });
 
 const middleware = t.middleware;

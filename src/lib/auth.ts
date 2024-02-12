@@ -1,3 +1,4 @@
+import "server-only";
 import type { NextAuthOptions } from "next-auth";
 import TwitchProvider from "next-auth/providers/twitch";
 

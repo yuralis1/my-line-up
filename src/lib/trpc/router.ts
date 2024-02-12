@@ -1,3 +1,4 @@
+import "server-only";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 import { router, publicProcedure, privateProcedure } from "./setup";

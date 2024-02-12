@@ -1,3 +1,4 @@
+import "server-only";
 import { getServerSession } from "next-auth";
 import { options } from "@/lib/auth";
 export async function getUser() {

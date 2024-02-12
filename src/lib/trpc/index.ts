@@ -1,3 +1,4 @@
+import "server-only";
 import { createCallerFactory } from "./setup";
 import appRouter from "./router";
 
