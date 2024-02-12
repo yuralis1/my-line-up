@@ -13,6 +13,9 @@ const appRouter = router({
         },
       });
     }),
+  getAllUsers: publicProcedure.query(async () => {
+    return await prisma.user.findMany();
+  }),
   deleteAllUsers: privateProcedure.query(async () => {
     await prisma.user.deleteMany();
   }),
